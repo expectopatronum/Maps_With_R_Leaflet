@@ -11,7 +11,32 @@ I planned the lectures in the following order but it's up to you. If you've neve
 
 Lesson content: Basic usage of `leaflet()`, `addTiles()`, `addMarkers()`, `setView()` and the pipe operator `%>%`.
 
-## Installation
+## Installation + First steps
+
+Use the following code to install `swirl` and my course `Maps_With_R_Leaflet`.
+```r
+install.packages("swirl") # installs swirl
+install_course_github("expectopatronum", "Maps_With_R_Leaflet")
+
+library("swirl")
+```
+
+Use the following code to get started.
+
+```r
+swirl() # starts the swirl environment
+... # Enter your name, ...
+```
+At the prompt
+
+```
+| Please choose a course, or type 0 to exit swirl.
+1: Maps With R Leaflet
+2: Take me to the swirl course repository!
+```
+
+Pick my course and have fun!
+
 
 ## Data from Austrian municipalities
 
