@@ -1,0 +1,76 @@
+# This file, written in yaml, specifies an unnamed list of named lists.
+# Items of the unnamed list are indicated by dashes followed by spaces (- ).
+# Items of each named list are indicated by key:value pairs. Note that
+# items are very carefully aligned, key:value pairs always starting two spaces
+# from the beginning of a line, for instance. Lines beginning with a hashtag, #,
+# are comments.
+#
+# The first named list is a convenience for swirl's internal use.
+- Class: meta 
+  Course: Maps with R leaflet
+  Lesson: Basic map
+  Author: Verena Haunschmid
+  Type: Standard
+  Organization: http://blog.haunschmid.name
+  Version: 1
+
+# This is named list of Class text. It is the first thing to appear when
+# swirl runs the lesson. 
+- Class: text
+  Output: "This course is designed to teach how to create useful and beautiful maps with R leaflet. The first lesson covers creating a basic map and placing markers at specified GPS coordinates."
+  
+- Class: cmd_question 
+  Output: "Let's get started with the first command. To create a map and assign it to a variable type 'map <- leaflet() %>% addTiles()'"
+  CorrectAnswer: map <- leaflet() %>% addTiles()
+  AnswerTests: omnitest(correctExpr="map <- leaflet() %>% addTiles()")
+  Hint: "Enter map <- leaflet() %>% addTiles(), or an equivalent expression."
+
+- Class: text
+  Output: "Hooray! First question answered correctly. The call to leafet() creates a map widget. With addTiles() (and many other functions) you can add layers to the map. %>% is the very useful pipe operator from the package magrittr. Here you can find more about the operator: <https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html>.  You could also get the same map by writing map <- leaflet(); map <- addTiles(map); But in this course we will stick to the useful pipe operator."
+
+- Class: cmd_question
+  Output: "Now try to display the map."
+  CorrectAnswer: map
+  AnswerTests: omnitest(correctExpr="map")
+  Hint: "Enter map to display your created map."
+
+- Class: cmd_question
+  Output: "Now you should see a world map. I have prepared some data about Austrian capitals for this tutorial which should already be in you workspace. To look at it type capitals."
+  CorrectAnswer: capitals
+  AnswerTests: omnitest(correctExpr="capitals")
+  Hint: "Enter capitals to look at the data."
+
+- Class: mult_question
+  Output: "There are lots of columns that you don't need for your map, but this will also happen in real projects. To add markers to our empty map you need latitude and longitude. Which column corresponds to longitude?"
+  AnswerChoices: "ID;LAT;GEO;"
+  CorrectAnswer: "LAT"
+  AnswerTests: omnitest(correctVal="LAT")
+  Hint: "Nope. Sorry."
+
+- Class: cmd_question
+  Output: "Now you know everything to add markers of every Austrian capital. The method is called addMarkers. There are several ways how you can achieve a map. Let's try the easiest way, by passing the columns LAT and LNG from the data.frame capitals to the method. The parameters are called 'lng' and 'lat'. Don't forget to use the pipe operator."
+  CorrectAnswer: map %>% addMarkers(lng=capitals$LNG, lat=capitals$LAT)
+  AnswerTests: omnitest(correctExpr = "map %>% addMarkers(lng=capitals$LNG, lat=capitals$LAT)")
+  Hint: Try 'map %>% addMarkers(lng=capitals$LNG, lat=capitals$LAT)'!
+
+- Class: text
+  Output: "Now the map with 9 markers should be displayed. But we didn't overwrite the map variable. That's like calling addMarkers(map, lng=capitals$LNG, lat=capitals$LAT) without assigning it to a variable. The map will be displayed immediately but not saved. If we perform other changes, the markers will be gone."
+
+- Class: cmd_question
+  Output: "Now we want to create (and save) the map with markers in a more advanced way. We will use the previous command but additionally (1) assign it to the map variable (2) pass the data.frame capitals as parameter data (3) use formulae (hint ~LAT) to pass LAT and LNG (4) use the parameter popup to display the names of the cities (hint: GEMEINDE). Give it a try!"
+  CorrectAnswer: map <- map %>% addMarkers(lng=~LNG, lat=~LAT, data = capitals, popup = ~GEMEINDE)
+  AnswerTests: omnitest(correctExpr = "map <- map %>% addMarkers(lng=~LNG, lat=~LAT, data = capitals, popup = ~GEMEINDE)")
+  Hint: "(1) Did you assign the result to the map variable? (2) Did you pass data=capitals? (3) Did you pass lat=~LAT and lng=~LNG? (4) Did you pass popup=~GEMEINDE?"
+
+- Class: cmd_question
+  Output: "Well done! You passed the most difficult part of this lesson. To view your updated map just type map."
+  CorrectAnswer: map
+  AnswerTests: omnitest(correctExpr = "map")
+  Hint: Type 'map'. Don't overcomplicate :)
+
+- Class: cmd_question
+  Output: "Great Now you can click on each marker and get the name of the city. To get a closer look at the area around a city, you could either move around with the mouse and the + and - symbol but we can also do it programmatically. The method is called setView. I have already saved the coordinates linz_lng and linz_lat for you. A third parameter is the zoom factor. To get a close look of Linz try zoom=9. Since this is the last step of the lesson you don't need to assign it to a variable (then it will display the changes directly)."
+  CorrectAnswer: map %>% setView (lng = linz_lng, lat = linz_lat, zoom=9)
+  AnswerTests: omnitest(correctExpr = "map %>% setView (lng = linz_lng, lat = linz_lat, zoom=9)")
+  Hint: "Use the pipe operator and don't forget parameters lng, lat and zoom."
+
