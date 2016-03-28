@@ -6,6 +6,6 @@
 # Source utilities.R
 # source(file.path(find.package("swirl"), "Courses", "Writing_swirl_Courses", "R", "utilities.R"))
 
-capitals <- readRDS("Basic_Map/capitals.RDS")
+capitals <- readRDS("capitals.RDS")
 linz_lng <- capitals[capitals$GEMEINDE=="Linz", "LNG"]
 linz_lat <- capitals[capitals$GEMEINDE=="Linz", "LAT"]
