@@ -41,7 +41,7 @@
   Hint: "Enter capitals to look at the data."
 
 - Class: mult_question
-  Output: "There are lots of columns that you don't need for your map, but this will also happen in real projects. To add markers to our empty map you need latitude and longitude. Which column corresponds to longitude?"
+  Output: "There are lots of columns that you don't need for your map, but this will also happen in real projects. To add markers to our empty map you need latitude and longitude. Which column corresponds to latitude?"
   AnswerChoices: "ID;LAT;GEO;"
   CorrectAnswer: "LAT"
   AnswerTests: omnitest(correctVal="LAT")
