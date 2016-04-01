@@ -5,9 +5,10 @@
 
 
 # found this source in https://github.com/swirldev/swirl_courses/blob/master/Exploratory_Data_Analysis/CaseStudy/initLesson.R
-path_to_course <- file.path(find.package("swirl"),"Courses/Maps_With_R_Leaflet/Basic_Map/")
-path_to_file <- "capitals.RDS"
-data_file <- paste0(path_to_course, path_to_file)
+path_to_course <- file.path(find.package("swirl"),"Courses/Maps_With_R_Leaflet/Basic_Map/", "capitals.RDS")
+#path_to_file <- "capitals.RDS"
+#data_file <- paste0(path_to_course, path_to_file)
+data_file <- path_to_course
 
 capitals <- readRDS(data_file)
 linz_lng <- capitals[capitals$GEMEINDE=="Linz", "LNG"]
